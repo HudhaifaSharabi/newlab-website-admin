@@ -1,0 +1,68 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-19 21:04:09.573493",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "title_ar",
+    "desc_ar",
+    "column_break_en",
+    "title_en",
+    "desc_en",
+    "section_break_icon",
+    "icon"
+  ],
+  "fields": [
+    {
+      "fieldname": "title_ar",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "العنوان (عربي)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "desc_ar",
+      "fieldtype": "Small Text",
+      "label": "الوصف (عربي)"
+    },
+    {
+      "fieldname": "column_break_en",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "title_en",
+      "fieldtype": "Data",
+      "label": "العنوان (إنجليزي)"
+    },
+    {
+      "fieldname": "desc_en",
+      "fieldtype": "Small Text",
+      "label": "الوصف (إنجليزي)"
+    },
+    {
+      "fieldname": "section_break_icon",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "icon",
+      "fieldtype": "Data",
+      "label": "اسم الأيقونة (مثل flask)"
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-02-19 21:04:09.573493",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS Workflow Highlight",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

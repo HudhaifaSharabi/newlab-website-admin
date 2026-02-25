@@ -1,0 +1,115 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-24 23:09:05.693039",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "section_title",
+    "title_ar",
+    "column_break_title",
+    "title_en",
+    "section_branches",
+    "branches",
+    "section_action_btn",
+    "action_text_ar",
+    "action_link_ar",
+    "column_break_btn_en",
+    "action_text_en",
+    "action_link_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "section_title",
+      "fieldtype": "Section Break",
+      "label": "عنوان القائمة"
+    },
+    {
+      "fieldname": "title_ar",
+      "fieldtype": "Data",
+      "label": "العنوان (عربي)",
+      "default": "تحدث مع فرعك"
+    },
+    {
+      "fieldname": "column_break_title",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "title_en",
+      "fieldtype": "Data",
+      "label": "العنوان (إنجليزي)",
+      "default": "Chat with a Branch"
+    },
+
+    {
+      "fieldname": "section_branches",
+      "fieldtype": "Section Break",
+      "label": "قائمة الفروع (واتساب)"
+    },
+    {
+      "fieldname": "branches",
+      "fieldtype": "Table",
+      "label": "الفروع",
+      "options": "SS Chat Widget Branch"
+    },
+
+    {
+      "fieldname": "section_action_btn",
+      "fieldtype": "Section Break",
+      "label": "زر الإجراء السفلي (Action Button)"
+    },
+    {
+      "fieldname": "action_text_ar",
+      "fieldtype": "Data",
+      "label": "تسمية الزر (عربي)",
+      "default": "حجز زيارة منزلية"
+    },
+    {
+      "fieldname": "action_link_ar",
+      "fieldtype": "Data",
+      "label": "رابط الزر (عربي)",
+      "default": "/ar/book"
+    },
+    {
+      "fieldname": "column_break_btn_en",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "action_text_en",
+      "fieldtype": "Data",
+      "label": "تسمية الزر (إنجليزي)",
+      "default": "Book Home Visit"
+    },
+    {
+      "fieldname": "action_link_en",
+      "fieldtype": "Data",
+      "label": "رابط الزر (إنجليزي)",
+      "default": "/en/book"
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "issingle": 1,
+  "links": [],
+  "modified": "2026-02-24 23:09:05.693039",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS Chat Widget Settings",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "print": 1,
+      "read": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

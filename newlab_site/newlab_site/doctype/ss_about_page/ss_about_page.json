@@ -1,0 +1,267 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-24 21:02:41.869394",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "sb_hero",
+    "hero_title_ar",
+    "hero_subtitle_ar",
+    "hero_badge_ar",
+    "cb_hero_en",
+    "hero_title_en",
+    "hero_subtitle_en",
+    "hero_badge_en",
+    "section_hero_img",
+    "hero_image",
+
+    "sb_story",
+    "story_headline_ar",
+    "story_subheadline_ar",
+    "story_body_ar",
+    "cb_story_en",
+    "story_headline_en",
+    "story_subheadline_en",
+    "story_body_en",
+    "section_story_imgs",
+    "story_image_1",
+    "column_break_img_2",
+    "story_image_2",
+    "column_break_img_3",
+    "story_image_3",
+    "story_pillars",
+
+    "sb_values",
+    "values_title_ar",
+    "values_title_en",
+    "values_items",
+
+    "sb_cta",
+    "cta_title_ar",
+    "cta_book_btn_ar",
+    "cta_explore_btn_ar",
+    "cb_cta_en",
+    "cta_title_en",
+    "cta_book_btn_en",
+    "cta_explore_btn_en",
+    "section_cta_links",
+    "cta_book_link",
+    "column_break_links",
+    "cta_explore_link"
+  ],
+  "fields": [
+    {
+      "fieldname": "sb_hero",
+      "fieldtype": "Section Break",
+      "label": "القسم الافتتاحي (Hero)"
+    },
+    {
+      "fieldname": "hero_title_ar",
+      "fieldtype": "Data",
+      "label": "العنوان (عربي)"
+    },
+    {
+      "fieldname": "hero_subtitle_ar",
+      "fieldtype": "Data",
+      "label": "العنوان الفرعي (عربي)"
+    },
+    {
+      "fieldname": "hero_badge_ar",
+      "fieldtype": "Data",
+      "label": "الشارة / التاج (عربي)"
+    },
+    { "fieldname": "cb_hero_en", "fieldtype": "Column Break" },
+    {
+      "fieldname": "hero_title_en",
+      "fieldtype": "Data",
+      "label": "العنوان (إنجليزي)"
+    },
+    {
+      "fieldname": "hero_subtitle_en",
+      "fieldtype": "Data",
+      "label": "العنوان الفرعي (إنجليزي)"
+    },
+    {
+      "fieldname": "hero_badge_en",
+      "fieldtype": "Data",
+      "label": "الشارة / التاج (إنجليزي)"
+    },
+    { "fieldname": "section_hero_img", "fieldtype": "Section Break" },
+    {
+      "fieldname": "hero_image",
+      "fieldtype": "Attach Image",
+      "label": "الصورة الرئيسية (Hero Image)"
+    },
+
+    {
+      "fieldname": "sb_story",
+      "fieldtype": "Section Break",
+      "label": "قسم قصتنا (Story)"
+    },
+    {
+      "fieldname": "story_headline_ar",
+      "fieldtype": "Data",
+      "label": "العنوان الرئيسي للقصة (عربي)"
+    },
+    {
+      "fieldname": "story_subheadline_ar",
+      "fieldtype": "Data",
+      "label": "العنوان الفرعي للقصة (عربي)"
+    },
+    {
+      "fieldname": "story_body_ar",
+      "fieldtype": "Small Text",
+      "label": "النص / المحتوى (عربي)"
+    },
+    { "fieldname": "cb_story_en", "fieldtype": "Column Break" },
+    {
+      "fieldname": "story_headline_en",
+      "fieldtype": "Data",
+      "label": "العنوان الرئيسي للقصة (إنجليزي)"
+    },
+    {
+      "fieldname": "story_subheadline_en",
+      "fieldtype": "Data",
+      "label": "العنوان الفرعي للقصة (إنجليزي)"
+    },
+    {
+      "fieldname": "story_body_en",
+      "fieldtype": "Small Text",
+      "label": "النص / المحتوى (إنجليزي)"
+    },
+
+    {
+      "fieldname": "section_story_imgs",
+      "fieldtype": "Section Break",
+      "label": "صور القصة"
+    },
+    {
+      "fieldname": "story_image_1",
+      "fieldtype": "Attach Image",
+      "label": "الصورة الأولى (Image 1)"
+    },
+    { "fieldname": "column_break_img_2", "fieldtype": "Column Break" },
+    {
+      "fieldname": "story_image_2",
+      "fieldtype": "Attach Image",
+      "label": "الصورة الثانية (Image 2)"
+    },
+    { "fieldname": "column_break_img_3", "fieldtype": "Column Break" },
+    {
+      "fieldname": "story_image_3",
+      "fieldtype": "Attach Image",
+      "label": "الصورة الثالثة (Image 3)"
+    },
+
+    {
+      "fieldname": "story_pillars",
+      "fieldtype": "Table",
+      "label": "ركائز القصة",
+      "options": "SS About Pillar"
+    },
+
+    {
+      "fieldname": "sb_values",
+      "fieldtype": "Section Break",
+      "label": "قسم القيم الأساسية (Values)"
+    },
+    {
+      "fieldname": "values_title_ar",
+      "fieldtype": "Data",
+      "label": "عنوان قسم القيم (عربي)"
+    },
+    {
+      "fieldname": "values_title_en",
+      "fieldtype": "Data",
+      "label": "عنوان قسم القيم (إنجليزي)"
+    },
+    {
+      "fieldname": "values_items",
+      "fieldtype": "Table",
+      "label": "قائمة القيم",
+      "options": "SS About Value"
+    },
+
+    {
+      "fieldname": "sb_cta",
+      "fieldtype": "Section Break",
+      "label": "قسم اتخاذ الإجراء (Call To Action)"
+    },
+    {
+      "fieldname": "cta_title_ar",
+      "fieldtype": "Data",
+      "label": "العنوان (عربي)"
+    },
+    {
+      "fieldname": "cta_book_btn_ar",
+      "fieldtype": "Data",
+      "label": "تسمية زر الحجز (عربي)"
+    },
+    {
+      "fieldname": "cta_explore_btn_ar",
+      "fieldtype": "Data",
+      "label": "تسمية زر الاستكشاف (عربي)"
+    },
+    { "fieldname": "cb_cta_en", "fieldtype": "Column Break" },
+    {
+      "fieldname": "cta_title_en",
+      "fieldtype": "Data",
+      "label": "العنوان (إنجليزي)"
+    },
+    {
+      "fieldname": "cta_book_btn_en",
+      "fieldtype": "Data",
+      "label": "تسمية زر الحجز (إنجليزي)"
+    },
+    {
+      "fieldname": "cta_explore_btn_en",
+      "fieldtype": "Data",
+      "label": "تسمية زر الاستكشاف (إنجليزي)"
+    },
+
+    {
+      "fieldname": "section_cta_links",
+      "fieldtype": "Section Break",
+      "label": "روابط الأزرار (Links)"
+    },
+    {
+      "fieldname": "cta_book_link",
+      "fieldtype": "Data",
+      "label": "رابط زر الحجز",
+      "default": "/book"
+    },
+    { "fieldname": "column_break_links", "fieldtype": "Column Break" },
+    {
+      "fieldname": "cta_explore_link",
+      "fieldtype": "Data",
+      "label": "رابط زر الاستكشاف",
+      "default": "/tests"
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "issingle": 1,
+  "links": [],
+  "modified": "2026-02-24 21:02:41.869394",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS About Page",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "print": 1,
+      "read": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

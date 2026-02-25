@@ -1,0 +1,458 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-19 21:12:16.887480",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sb_hero",
+  "hero_kicker_ar",
+  "hero_kicker_en",
+  "hero_title_ar",
+  "hero_title_en",
+  "hero_accent_ar",
+  "hero_accent_en",
+  "hero_description_ar",
+  "hero_description_en",
+  "cb_hero_cta",
+  "hero_cta_1_ar",
+  "hero_cta_1_en",
+  "hero_cta_1_url",
+  "hero_cta_2_ar",
+  "hero_cta_2_en",
+  "hero_cta_2_url",
+  "sb_hero_lists",
+  "hero_indicators",
+  "hero_images",
+  "sb_about",
+  "about_badge_ar",
+  "about_badge_en",
+  "about_title_ar",
+  "about_title_en",
+  "about_desc_ar",
+  "about_desc_en",
+  "about_cards",
+  "sb_workflow",
+  "wf_badge_ar",
+  "wf_badge_en",
+  "wf_title_ar",
+  "wf_title_en",
+  "wf_subtitle_ar",
+  "wf_subtitle_en",
+  "wf_cover",
+  "wf_highlights",
+  "wf_quality_ar",
+  "wf_quality_en",
+  "wf_gallery",
+  "sb_wf_cta",
+  "wf_cta_title_ar",
+  "wf_cta_title_en",
+  "wf_cta_desc_ar",
+  "wf_cta_desc_en",
+  "wf_cta_btn_ar",
+  "wf_cta_btn_en",
+  "wf_cta_url",
+  "sb_packages",
+  "pkg_badge_ar",
+  "pkg_badge_en",
+  "pkg_title_ar",
+  "pkg_title_en",
+  "pkg_subtitle_ar",
+  "pkg_subtitle_en",
+  "packages",
+  "sb_stats",
+  "stats_title_ar",
+  "stats_title_en",
+  "stats_subtitle_ar",
+  "stats_subtitle_en",
+  "stats_counters",
+  "sb_partners",
+  "partners",
+  "sb_locations",
+  "loc_title_ar",
+  "loc_title_en",
+  "loc_subtitle_ar",
+  "loc_subtitle_en",
+  "locations"
+ ],
+ "fields": [
+  {
+   "fieldname": "sb_hero",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0642\u0633\u0645 \u0627\u0644\u0627\u0641\u062a\u062a\u0627\u062d\u064a (Hero)"
+  },
+  {
+   "fieldname": "hero_kicker_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0627\u0633\u062a\u0647\u0644\u0627\u0644\u064a\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_kicker_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0627\u0633\u062a\u0647\u0644\u0627\u0644\u064a\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "hero_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0631\u0626\u064a\u0633\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0631\u0626\u064a\u0633\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "hero_accent_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0646\u0635 \u0627\u0644\u0645\u0645\u064a\u0632 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_accent_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0646\u0635 \u0627\u0644\u0645\u0645\u064a\u0632 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "cb_hero_cta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hero_cta_1_ar",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 \u0627\u0644\u0631\u0626\u064a\u0633\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_cta_1_en",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 \u0627\u0644\u0631\u0626\u064a\u0633\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "hero_cta_1_url",
+   "fieldtype": "Data",
+   "label": "\u0631\u0627\u0628\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u0631\u0626\u064a\u0633\u064a"
+  },
+  {
+   "fieldname": "hero_cta_2_ar",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 \u0627\u0644\u062b\u0627\u0646\u0648\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_cta_2_en",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 \u0627\u0644\u062b\u0627\u0646\u0648\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "hero_cta_2_url",
+   "fieldtype": "Data",
+   "label": "\u0631\u0627\u0628\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u062b\u0627\u0646\u0648\u064a"
+  },
+  {
+   "fieldname": "sb_hero_lists",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0642\u0633\u0645 \u0627\u0644\u0627\u0641\u062a\u062a\u0627\u062d\u064a"
+  },
+  {
+   "fieldname": "hero_indicators",
+   "fieldtype": "Table",
+   "label": "\u0645\u0624\u0634\u0631\u0627\u062a \u0627\u0644\u062d\u0627\u0644\u0629",
+   "options": "SS Hero Indicator"
+  },
+  {
+   "fieldname": "hero_images",
+   "fieldtype": "Table",
+   "label": "\u0635\u0648\u0631 \u0627\u0644\u0639\u0631\u0636 (Slideshow)",
+   "options": "SS Hero Image"
+  },
+  {
+   "fieldname": "sb_about",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0645\u0646 \u0646\u062d\u0646 (About)"
+  },
+  {
+   "fieldname": "about_badge_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "about_badge_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "about_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "about_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "about_desc_ar",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0648\u0635\u0641 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "about_desc_en",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0648\u0635\u0641 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "about_cards",
+   "fieldtype": "Table",
+   "label": "\u0628\u0637\u0627\u0642\u0627\u062a \u0645\u0646 \u0646\u062d\u0646",
+   "options": "SS About Card"
+  },
+  {
+   "fieldname": "sb_workflow",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0645\u0633\u0627\u0631 \u0627\u0644\u0639\u0645\u0644 (Workflow)"
+  },
+  {
+   "fieldname": "wf_badge_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_badge_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_subtitle_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_subtitle_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_cover",
+   "fieldtype": "Attach Image",
+   "label": "\u0635\u0648\u0631\u0629 \u0627\u0644\u063a\u0644\u0627\u0641"
+  },
+  {
+   "fieldname": "wf_highlights",
+   "fieldtype": "Table",
+   "label": "\u0623\u0628\u0631\u0632 \u0627\u0644\u0645\u0645\u064a\u0632\u0627\u062a",
+   "options": "SS Workflow Highlight"
+  },
+  {
+   "fieldname": "wf_quality_ar",
+   "fieldtype": "Small Text",
+   "label": "\u0646\u0642\u0627\u0637 \u0627\u0644\u062c\u0648\u062f\u0629 \u0639\u0631\u0628\u064a (\u0645\u064a\u0632\u0629 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631)"
+  },
+  {
+   "fieldname": "wf_quality_en",
+   "fieldtype": "Small Text",
+   "label": "\u0646\u0642\u0627\u0637 \u0627\u0644\u062c\u0648\u062f\u0629 \u0625\u0646\u062c\u0644\u064a\u0632\u064a (\u0645\u064a\u0632\u0629 \u0641\u064a \u0643\u0644 \u0633\u0637\u0631)"
+  },
+  {
+   "fieldname": "wf_gallery",
+   "fieldtype": "Table",
+   "label": "\u0645\u0639\u0631\u0636 \u0627\u0644\u0635\u0648\u0631",
+   "options": "SS Workflow Gallery"
+  },
+  {
+   "fieldname": "sb_wf_cta",
+   "fieldtype": "Section Break",
+   "label": "\u0632\u0631 \u0627\u062a\u062e\u0627\u0630 \u0627\u0644\u0625\u062c\u0631\u0627\u0621 \u0644\u0645\u0633\u0627\u0631 \u0627\u0644\u0639\u0645\u0644"
+  },
+  {
+   "fieldname": "wf_cta_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0632\u0631 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_title_en",
+   "fieldtype": "Data",
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0632\u0631 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_desc_ar",
+   "fieldtype": "Data",
+   "label": "\u0648\u0635\u0641 \u0627\u0644\u0632\u0631 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_desc_en",
+   "fieldtype": "Data",
+   "label": "\u0648\u0635\u0641 \u0627\u0644\u0632\u0631 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_btn_ar",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_btn_en",
+   "fieldtype": "Data",
+   "label": "\u062a\u0633\u0645\u064a\u0629 \u0627\u0644\u0632\u0631 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "wf_cta_url",
+   "fieldtype": "Data",
+   "label": "\u0631\u0627\u0628\u0637 \u0627\u0644\u0632\u0631"
+  },
+  {
+   "fieldname": "sb_packages",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0627\u0644\u0628\u0627\u0642\u0627\u062a (Packages)"
+  },
+  {
+   "fieldname": "pkg_badge_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "pkg_badge_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0634\u0627\u0631\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "pkg_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "pkg_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "pkg_subtitle_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "pkg_subtitle_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "packages",
+   "fieldtype": "Table",
+   "label": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0628\u0627\u0642\u0627\u062a",
+   "options": "SS Package Item"
+  },
+  {
+   "fieldname": "sb_stats",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0627\u0644\u0625\u062d\u0635\u0627\u0626\u064a\u0627\u062a (Stats)"
+  },
+  {
+   "fieldname": "stats_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "stats_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "stats_subtitle_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "stats_subtitle_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "stats_counters",
+   "fieldtype": "Table",
+   "label": "\u0627\u0644\u0639\u062f\u0627\u062f\u0627\u062a \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645",
+   "options": "SS Stat Counter"
+  },
+  {
+   "fieldname": "sb_partners",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0627\u0644\u0634\u0631\u0643\u0627\u0621 (Partners)"
+  },
+  {
+   "fieldname": "partners",
+   "fieldtype": "Table",
+   "label": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0634\u0631\u0643\u0627\u0621",
+   "options": "SS Partner"
+  },
+  {
+   "fieldname": "sb_locations",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0633\u0645 \u0627\u0644\u0641\u0631\u0648\u0639 \u0648\u0627\u0644\u0645\u0648\u0627\u0642\u0639 (Locations)"
+  },
+  {
+   "fieldname": "loc_title_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "loc_title_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "loc_subtitle_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "loc_subtitle_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "locations",
+   "fieldtype": "Table",
+   "label": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0641\u0631\u0648\u0639 \u0648\u0627\u0644\u0645\u0648\u0627\u0642\u0639",
+   "options": "SS Location Branch"
+  },
+  {
+   "fieldname": "hero_description_ar",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0648\u0635\u0641 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "hero_description_en",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0648\u0635\u0641 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-02-24 22:34:34.908849",
+ "modified_by": "Administrator",
+ "module": "Newlab Site",
+ "name": "SS Landing Page",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

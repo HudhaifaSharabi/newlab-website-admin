@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-02-20 20:02:50.166687",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_main",
+  "news_id",
+  "image",
+  "column_break_meta",
+  "publish_date",
+  "naming_series",
+  "section_titles",
+  "title_ar",
+  "excerpt_ar",
+  "read_time_ar",
+  "column_break_en",
+  "title_en",
+  "excerpt_en",
+  "read_time_en"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_main",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u0629"
+  },
+  {
+   "fieldname": "news_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0645\u0639\u0631\u0641 \u0627\u0644\u062e\u0628\u0631 (ID - \u0628\u0627\u0644\u0625\u0646\u062c\u0644\u064a\u0632\u064a\u0629 \u0648\u0628\u062f\u0648\u0646 \u0645\u0633\u0627\u0641\u0627\u062a)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "\u0635\u0648\u0631\u0629 \u0627\u0644\u062e\u0628\u0631",
+   "make_attachment_public": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "publish_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0646\u0634\u0631",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_titles",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0645\u062d\u062a\u0648\u0649 \u0648\u0627\u0644\u0644\u063a\u0627\u062a"
+  },
+  {
+   "fieldname": "title_ar",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u062e\u0628\u0631 (\u0639\u0631\u0628\u064a)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "excerpt_ar",
+   "fieldtype": "Text",
+   "label": "\u0627\u0644\u0645\u0642\u062a\u0637\u0641 / \u0627\u0644\u0646\u0628\u0630\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "default": "3 \u062f\u0642\u0627\u0626\u0642",
+   "fieldname": "read_time_ar",
+   "fieldtype": "Data",
+   "label": "\u0645\u062f\u0629 \u0627\u0644\u0642\u0631\u0627\u0621\u0629 (\u0639\u0631\u0628\u064a - \u0645\u062b\u0644: 3 \u062f\u0642\u0627\u0626\u0642)"
+  },
+  {
+   "fieldname": "column_break_en",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "title_en",
+   "fieldtype": "Data",
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u062e\u0628\u0631 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "excerpt_en",
+   "fieldtype": "Text",
+   "label": "\u0627\u0644\u0645\u0642\u062a\u0637\u0641 / \u0627\u0644\u0646\u0628\u0630\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "default": "3 min",
+   "fieldname": "read_time_en",
+   "fieldtype": "Data",
+   "label": "\u0645\u062f\u0629 \u0627\u0644\u0642\u0631\u0627\u0621\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a - \u0645\u062b\u0644: 3 min)"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "SSNA-",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-02-20 20:08:15.562581",
+ "modified_by": "Administrator",
+ "module": "Newlab Site",
+ "name": "SS News Article",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title_ar"
+}

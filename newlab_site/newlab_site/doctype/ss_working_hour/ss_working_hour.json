@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-20 21:50:15.639795",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "days_ar",
+  "days_en",
+  "hours",
+  "is_emergency"
+ ],
+ "fields": [
+  {
+   "fieldname": "days_ar",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0623\u064a\u0627\u0645 (\u0639\u0631\u0628\u064a - \u0645\u062b\u0644: \u0627\u0644\u0633\u0628\u062a - \u0627\u0644\u062e\u0645\u064a\u0633)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "days_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0623\u064a\u0627\u0645 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a - \u0645\u062b\u0644: Sat - Thu)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hours",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0633\u0627\u0639\u0627\u062a (\u0645\u062b\u0644: 8:00 AM - 10:00 PM)",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_emergency",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "\u0647\u0644 \u0647\u064a \u062d\u0627\u0644\u0629 \u0637\u0648\u0627\u0631\u0626\u061f (\u064a\u0636\u064a\u0641 \u062d\u0642\u0644 isEmergency)"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-20 21:58:10.594060",
+ "modified_by": "Administrator",
+ "module": "Newlab Site",
+ "name": "SS Working Hour",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

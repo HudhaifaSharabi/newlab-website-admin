@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-02-20 21:14:28.159719",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_main",
+  "article_id",
+  "is_featured",
+  "date",
+  "column_break_img",
+  "image",
+  "author_ar",
+  "author_en",
+  "naming_series",
+  "section_meta",
+  "category_ar",
+  "read_time_ar",
+  "column_break_meta_en",
+  "category_en",
+  "read_time_en",
+  "section_content_ar",
+  "title_ar",
+  "excerpt_ar",
+  "content_ar",
+  "section_content_en",
+  "title_en",
+  "excerpt_en",
+  "content_en"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_main",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u0629"
+  },
+  {
+   "fieldname": "article_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0645\u0639\u0631\u0641 \u0627\u0644\u0645\u0642\u0627\u0644 (ID - \u0628\u0627\u0644\u0625\u0646\u062c\u0644\u064a\u0632\u064a\u0629 \u0648\u0628\u062f\u0648\u0646 \u0645\u0633\u0627\u0641\u0627\u062a)",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_featured",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "\u0647\u0644 \u0627\u0644\u0645\u0642\u0627\u0644 \u0645\u0645\u064a\u0632\u061f (Featured)"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0646\u0634\u0631",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_img",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "\u0635\u0648\u0631\u0629 \u0627\u0644\u0645\u0642\u0627\u0644"
+  },
+  {
+   "fieldname": "author_ar",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u062a\u0628 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "author_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0643\u0627\u062a\u0628 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "section_meta",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u062a\u0635\u0646\u064a\u0641 \u0648\u0645\u062f\u0629 \u0627\u0644\u0642\u0631\u0627\u0621\u0629"
+  },
+  {
+   "fieldname": "category_ar",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u062a\u0635\u0646\u064a\u0641 (\u0639\u0631\u0628\u064a - \u0645\u062b\u0644: \u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627)"
+  },
+  {
+   "fieldname": "read_time_ar",
+   "fieldtype": "Data",
+   "label": "\u0645\u062f\u0629 \u0627\u0644\u0642\u0631\u0627\u0621\u0629 (\u0639\u0631\u0628\u064a - \u0645\u062b\u0644: 8 \u062f\u0642\u0627\u0626\u0642)"
+  },
+  {
+   "fieldname": "column_break_meta_en",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "category_en",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u062a\u0635\u0646\u064a\u0641 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a - \u0645\u062b\u0644: Technology)"
+  },
+  {
+   "fieldname": "read_time_en",
+   "fieldtype": "Data",
+   "label": "\u0645\u062f\u0629 \u0627\u0644\u0642\u0631\u0627\u0621\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a - \u0645\u062b\u0644: 8 min)"
+  },
+  {
+   "fieldname": "section_content_ar",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0645\u062d\u062a\u0648\u0649 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "title_ar",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0645\u0642\u0627\u0644 (\u0639\u0631\u0628\u064a)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "excerpt_ar",
+   "fieldtype": "Text",
+   "label": "\u0645\u0642\u062a\u0637\u0641 / \u0646\u0628\u0630\u0629 (\u0639\u0631\u0628\u064a)"
+  },
+  {
+   "fieldname": "content_ar",
+   "fieldtype": "Text Editor",
+   "label": "\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0645\u0642\u0627\u0644 \u0627\u0644\u0643\u0627\u0645\u0644 (\u0639\u0631\u0628\u064a - \u064a\u062f\u0639\u0645 \u0627\u0644\u062a\u0646\u0633\u064a\u0642 \u0648\u0627\u0644\u0635\u0648\u0631)"
+  },
+  {
+   "fieldname": "section_content_en",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0645\u062d\u062a\u0648\u0649 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "title_en",
+   "fieldtype": "Data",
+   "label": "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0645\u0642\u0627\u0644 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "excerpt_en",
+   "fieldtype": "Text",
+   "label": "\u0645\u0642\u062a\u0637\u0641 / \u0646\u0628\u0630\u0629 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a)"
+  },
+  {
+   "fieldname": "content_en",
+   "fieldtype": "Text Editor",
+   "label": "\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0645\u0642\u0627\u0644 \u0627\u0644\u0643\u0627\u0645\u0644 (\u0625\u0646\u062c\u0644\u064a\u0632\u064a - \u064a\u062f\u0639\u0645 \u0627\u0644\u062a\u0646\u0633\u064a\u0642 \u0648\u0627\u0644\u0635\u0648\u0631)"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming_Series",
+   "options": "SSAN-",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-02-22 23:41:55.597507",
+ "modified_by": "Administrator",
+ "module": "Newlab Site",
+ "name": "SS Article",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title_ar"
+}

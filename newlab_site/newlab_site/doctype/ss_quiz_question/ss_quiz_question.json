@@ -1,0 +1,188 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-25 01:15:44.634866",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "question_id",
+    "text_ar",
+    "text_en",
+    "sb_opt1",
+    "opt1_label_ar",
+    "opt1_value",
+    "cb_opt1",
+    "opt1_label_en",
+    "opt1_points",
+    "sb_opt2",
+    "opt2_label_ar",
+    "opt2_value",
+    "cb_opt2",
+    "opt2_label_en",
+    "opt2_points",
+    "sb_opt3",
+    "opt3_label_ar",
+    "opt3_value",
+    "cb_opt3",
+    "opt3_label_en",
+    "opt3_points",
+    "sb_opt4",
+    "opt4_label_ar",
+    "opt4_value",
+    "cb_opt4",
+    "opt4_label_en",
+    "opt4_points"
+  ],
+  "fields": [
+    {
+      "fieldname": "question_id",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "رقم السؤال",
+      "reqd": 1
+    },
+    {
+      "fieldname": "text_ar",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "نص السؤال (عربي)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "text_en",
+      "fieldtype": "Data",
+      "label": "نص السؤال (إنجليزي)",
+      "reqd": 1
+    },
+
+    {
+      "fieldname": "sb_opt1",
+      "fieldtype": "Section Break",
+      "label": "الخيار الأول (مطلوب)"
+    },
+    {
+      "fieldname": "opt1_label_ar",
+      "fieldtype": "Data",
+      "label": "النص (عربي)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "opt1_value",
+      "fieldtype": "Data",
+      "label": "القيمة البرمجية (Value)",
+      "reqd": 1
+    },
+    { "fieldname": "cb_opt1", "fieldtype": "Column Break" },
+    {
+      "fieldname": "opt1_label_en",
+      "fieldtype": "Data",
+      "label": "النص (إنجليزي)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "opt1_points",
+      "fieldtype": "Int",
+      "label": "النقاط",
+      "default": "0"
+    },
+
+    {
+      "fieldname": "sb_opt2",
+      "fieldtype": "Section Break",
+      "label": "الخيار الثاني"
+    },
+    {
+      "fieldname": "opt2_label_ar",
+      "fieldtype": "Data",
+      "label": "النص (عربي)"
+    },
+    {
+      "fieldname": "opt2_value",
+      "fieldtype": "Data",
+      "label": "القيمة البرمجية (Value)"
+    },
+    { "fieldname": "cb_opt2", "fieldtype": "Column Break" },
+    {
+      "fieldname": "opt2_label_en",
+      "fieldtype": "Data",
+      "label": "النص (إنجليزي)"
+    },
+    {
+      "fieldname": "opt2_points",
+      "fieldtype": "Int",
+      "label": "النقاط",
+      "default": "0"
+    },
+
+    {
+      "fieldname": "sb_opt3",
+      "fieldtype": "Section Break",
+      "label": "الخيار الثالث (اختياري)"
+    },
+    {
+      "fieldname": "opt3_label_ar",
+      "fieldtype": "Data",
+      "label": "النص (عربي)"
+    },
+    {
+      "fieldname": "opt3_value",
+      "fieldtype": "Data",
+      "label": "القيمة البرمجية (Value)"
+    },
+    { "fieldname": "cb_opt3", "fieldtype": "Column Break" },
+    {
+      "fieldname": "opt3_label_en",
+      "fieldtype": "Data",
+      "label": "النص (إنجليزي)"
+    },
+    {
+      "fieldname": "opt3_points",
+      "fieldtype": "Int",
+      "label": "النقاط",
+      "default": "0"
+    },
+
+    {
+      "fieldname": "sb_opt4",
+      "fieldtype": "Section Break",
+      "label": "الخيار الرابع (اختياري)"
+    },
+    {
+      "fieldname": "opt4_label_ar",
+      "fieldtype": "Data",
+      "label": "النص (عربي)"
+    },
+    {
+      "fieldname": "opt4_value",
+      "fieldtype": "Data",
+      "label": "القيمة البرمجية (Value)"
+    },
+    { "fieldname": "cb_opt4", "fieldtype": "Column Break" },
+    {
+      "fieldname": "opt4_label_en",
+      "fieldtype": "Data",
+      "label": "النص (إنجليزي)"
+    },
+    {
+      "fieldname": "opt4_points",
+      "fieldtype": "Int",
+      "label": "النقاط",
+      "default": "0"
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-02-25 01:15:44.634866",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS Quiz Question",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

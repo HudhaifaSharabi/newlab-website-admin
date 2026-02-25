@@ -1,0 +1,98 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-19 21:02:43.792398",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "branch_id",
+    "is_main",
+    "phone",
+    "latitude",
+    "longitude",
+    "section_break_ar",
+    "name_ar",
+    "address_ar",
+    "column_break_en",
+    "name_en",
+    "address_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "branch_id",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "رقم تعريف الفرع (ID)",
+      "reqd": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "is_main",
+      "fieldtype": "Check",
+      "label": "هل هذا هو الفرع الرئيسي؟"
+    },
+    {
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "رقم الهاتف"
+    },
+    {
+      "fieldname": "latitude",
+      "fieldtype": "Float",
+      "label": "خط العرض (Latitude)",
+      "precision": "6"
+    },
+    {
+      "fieldname": "longitude",
+      "fieldtype": "Float",
+      "label": "خط الطول (Longitude)",
+      "precision": "6"
+    },
+    {
+      "fieldname": "section_break_ar",
+      "fieldtype": "Section Break",
+      "label": "البيانات (عربي)"
+    },
+    {
+      "fieldname": "name_ar",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "اسم الفرع (عربي)"
+    },
+    {
+      "fieldname": "address_ar",
+      "fieldtype": "Data",
+      "label": "العنوان التفصيلي (عربي)"
+    },
+    {
+      "fieldname": "column_break_en",
+      "fieldtype": "Column Break",
+      "label": "البيانات (إنجليزي)"
+    },
+    {
+      "fieldname": "name_en",
+      "fieldtype": "Data",
+      "label": "اسم الفرع (إنجليزي)"
+    },
+    {
+      "fieldname": "address_en",
+      "fieldtype": "Data",
+      "label": "العنوان التفصيلي (إنجليزي)"
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-02-19 21:02:43.792398",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS Location Branch",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

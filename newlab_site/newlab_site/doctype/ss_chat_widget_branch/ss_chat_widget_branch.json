@@ -1,0 +1,68 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2026-02-24 23:07:34.846110",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "branch_id",
+    "whatsapp_number",
+    "section_names",
+    "name_ar",
+    "column_break_en",
+    "name_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "branch_id",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "معرف الفرع (ID - مثل: main)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "whatsapp_number",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "رقم الواتساب (مع رمز الدولة بدون + مثل: 967777000000)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_names",
+      "fieldtype": "Section Break",
+      "label": "اسم الفرع"
+    },
+    {
+      "fieldname": "name_ar",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "الاسم (عربي)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_en",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "name_en",
+      "fieldtype": "Data",
+      "label": "الاسم (إنجليزي)",
+      "reqd": 1
+    }
+  ],
+  "grid_page_length": 50,
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2026-02-24 23:07:34.846110",
+  "modified_by": "Administrator",
+  "module": "Newlab Site",
+  "name": "SS Chat Widget Branch",
+  "owner": "Administrator",
+  "permissions": [],
+  "row_format": "Dynamic",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}
