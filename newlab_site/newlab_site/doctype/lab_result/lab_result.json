@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-04-10 19:11:07.017641",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "owner_user",
+  "branch",
+  "naming_series",
+  "column_break_nzrg",
+  "patient_name",
+  "result_date",
+  "section_break_ufrf",
+  "result_pdf",
+  "column_break_pnkm",
+  "is_read"
+ ],
+ "fields": [
+  {
+   "fieldname": "owner_user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0639\u0645\u064a\u0644",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0641\u0631\u0648\u0639",
+   "options": "Lab Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "LRI-.YYYY.-.#####",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_nzrg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0631\u064a\u0636"
+  },
+  {
+   "default": "Today",
+   "fieldname": "result_date",
+   "fieldtype": "Date",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0646\u062a\u0627\u0626\u062c",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ufrf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "result_pdf",
+   "fieldtype": "Attach",
+   "label": "Result PDF",
+   "make_attachment_public": 1
+  },
+  {
+   "fieldname": "column_break_pnkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_read",
+   "fieldtype": "Check",
+   "label": "Is Read",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-13 21:17:55.863614",
+ "modified_by": "Administrator",
+ "module": "Newlab Site",
+ "name": "Lab Result",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "Results Entry",
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

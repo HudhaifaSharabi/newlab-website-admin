@@ -3,6 +3,17 @@ from frappe.utils import formatdate
 from frappe.utils.file_manager import save_file
 import json
 import base64
+from frappe.auth import LoginManager
+from frappe.utils import get_request_site_address
+import zipfile
+import io
+import os
+from frappe.utils import get_site_path
+import boto3
+from botocore.exceptions import ClientError
+from botocore.config import Config
+import urllib.parse
+from urllib.parse import unquote, urlparse, parse_qs
 
 def _get(doc, field):
     """Helper to safely get field value"""
@@ -1089,3 +1100,457 @@ def get_seo_metadata(route=None, locale=None):
             "status": "error",
             "message": "Internal Server Error"
         }
+
+
+
+
+
+
+
+
+@frappe.whitelist(allow_guest=True)
+def portal_login(phone_number, password):
+    try:
+        user_email = frappe.db.get_value("User", {"mobile_no": phone_number}, "name")
+
+        if not user_email:
+            frappe.local.response["http_status_code"] = 404
+            return {"status": "error", "message": "رقم الهاتف غير مسجل."}
+
+        # 1. المصادقة (Authentication): هل كلمة المرور صحيحة؟
+        frappe.local.login_manager = LoginManager()
+        frappe.local.login_manager.authenticate(user_email, password)
+        
+        # 2. التفويض (Authorization): هل يمتلك الصلاحية لدخول هذه البوابة؟
+        roles = frappe.get_roles(user_email)
+        
+        # التحقق مما إذا كان المستخدم يملك أحد الدورين المطلوبين
+        allowed_roles = ["Lab Center", "Lab Patient"]
+        user_type = None
+        
+        if "Lab Center" in roles:
+            user_type = "Center"
+        elif "Lab Patient" in roles:
+            user_type = "Patient"
+        
+        # إذا لم يكن مريضاً ولا مركزاً، نرفض دخوله للبوابة حتى لو كانت كلمة المرور صحيحة
+        if not user_type:
+            # مهم جداً: مسح الجلسة التي تم إنشاؤها في الخطوة 1 لأننا لن نسمح له بالاستمرار
+            frappe.local.login_manager.logout() 
+            frappe.local.response["http_status_code"] = 403 # Forbidden
+            return {"status": "error", "message": "عذراً، هذا الحساب لا يملك صلاحية الوصول لبوابة النتائج."}
+
+        # إذا نجح في كل الاختبارات، نقوم بإنشاء الجلسة النهائية
+        frappe.local.login_manager.post_login()
+
+        return {
+            "status": "success",
+            "message": "تم تسجيل الدخول بنجاح.",
+            "data": {"user_type": user_type, "full_name": frappe.get_value("User", user_email, "full_name")}
+        }
+
+    except frappe.exceptions.AuthenticationError:
+        frappe.local.response["http_status_code"] = 401
+        return {"status": "error", "message": "كلمة المرور غير صحيحة."}
+
+
+
+
+
+
+
+
+
+
+
+
+@frappe.whitelist(allow_guest=True)
+def portal_logout():
+    """
+    API مخصص لتسجيل الخروج وإتلاف الجلسة
+    """
+    # التحقق مما إذا كان المستخدم ضيفاً بالفعل (غير مسجل الدخول)
+    if frappe.session.user == "Guest":
+        return {
+            "status": "success",
+            "message": "لا يوجد جلسة نشطة، أنت غير مسجل الدخول."
+        }
+
+    try:
+        # إتلاف الجلسة من قاعدة بيانات Frappe
+        frappe.local.login_manager.logout()
+        
+        # حفظ التغييرات في قاعدة البيانات (حذف سجل الجلسة)
+        frappe.db.commit()
+
+        return {
+            "status": "success",
+            "message": "تم تسجيل الخروج بنجاح وإتلاف الجلسة أمنياً."
+        }
+
+    except Exception as e:
+        frappe.local.response["http_status_code"] = 500
+        return {"status": "error", "message": "حدث خطأ أثناء محاولة تسجيل الخروج."}
+
+
+
+
+
+
+
+
+@frappe.whitelist()
+def get_results(search_term="", from_date="", to_date="", branch="", limit_start=0, limit_page_length=20):
+    user = frappe.session.user
+    roles = frappe.get_roles(user)
+    
+    # 1. التحقق من الصلاحية
+    if "Lab Center" not in roles and "Lab Patient" not in roles:
+        frappe.local.response["http_status_code"] = 403
+        return {"status": "error", "message": "غير مصرح لك بالوصول لهذه البيانات."}
+
+    # 2. بناء فلاتر البحث الأساسية (أهم فلتر هو حصر البيانات بمالكها)
+    filters = {
+        "owner_user": user
+    }
+
+    # إضافة فلتر الفرع إن وجد
+    if branch:
+        filters["branch"] = branch
+
+    # إضافة فلتر التاريخ إن وجد (نطاق زمني)
+    if from_date and to_date:
+        filters["result_date"] = ["between", [from_date, to_date]]
+    elif from_date:
+        filters["result_date"] = [">=", from_date]
+
+    # 3. بناء استعلام البحث النصي (رقم الزيارة أو اسم المريض)
+    or_filters = {}
+    if search_term:
+        or_filters = {
+            "name": ["like", f"%{search_term}%"], # رقم الزيارة (Naming Series)
+            "patient_name": ["like", f"%{search_term}%"]
+        }
+
+    # 4. جلب البيانات من قاعدة البيانات
+    results = frappe.get_all(
+        "Lab Result",
+        filters=filters,
+        or_filters=or_filters,
+        fields=["name", "patient_name", "branch", "result_date", "is_read", "result_pdf"],
+        order_by="creation desc", # الأحدث أولاً
+        limit_start=limit_start,
+        limit_page_length=limit_page_length
+    )
+
+    # 5. جلب إجمالي العدد (لأغراض الـ Pagination في الواجهة الأمامية)
+    # ✅ السطر الجديد الصحيح
+    total_count = len(frappe.get_all(
+        "Lab Result",
+        filters=filters,
+        or_filters=or_filters,
+        fields=["name"],       # جلب الاسم فقط لتقليل استهلاك الذاكرة
+        limit_page_length=0    # 0 تعني تجاوز الـ Pagination لجلب كل السجلات المطابقة بغرض تعدادها
+    ))
+
+    return {
+        "status": "success",
+        "data": results,
+        "total_count": total_count
+    }
+
+
+
+@frappe.whitelist()
+def get_active_branches():
+    if frappe.session.user == "Guest":
+        frappe.local.response["http_status_code"] = 403
+        return {"status": "error", "message": "غير مصرح لك بالوصول."}
+
+    try:
+        # اكتفينا بجلب الـ name (اسم الفرع) فقط لضمان عمل الكود
+        branches = frappe.get_all(
+            "Lab Branch",
+            filters={"is_active": 1}, 
+            fields=["name"], 
+            order_by="name asc"
+        )
+
+        return {
+            "status": "success",
+            "data": branches
+        }
+
+    except Exception as e:
+        frappe.local.response["http_status_code"] = 500
+        return {"status": "error", "message": f"الخطأ الفعلي: {str(e)}"}
+
+
+
+
+
+@frappe.whitelist()
+def mark_as_read(result_name):
+    user = frappe.session.user
+    
+    # 1. جلب المستند للتأكد من وجوده
+    if not frappe.db.exists("Lab Result", result_name):
+        frappe.local.response["http_status_code"] = 404
+        return {"status": "error", "message": "النتيجة غير موجودة."}
+
+    # 2. حماية أمنية: التأكد من أن النتيجة تخص المستخدم الحالي
+    owner = frappe.db.get_value("Lab Result", result_name, "owner_user")
+    if owner != user:
+        frappe.local.response["http_status_code"] = 403
+        return {"status": "error", "message": "لا تملك صلاحية تعديل هذه النتيجة."}
+
+    # 3. تحديث الحالة
+    frappe.db.set_value("Lab Result", result_name, "is_read", 1)
+    
+    # 4. حفظ التغييرات في قاعدة البيانات (الخطوة الناقصة)
+    frappe.db.commit()
+    
+    # 5. تفريغ التخزين المؤقت (Cache) للمستند لتحديث الواجهة فوراً
+    frappe.cache().delete_key(f"doc:Lab Result:{result_name}")
+
+    return {"status": "success"}
+
+
+
+
+
+
+def get_s3_settings():
+    s3_doc = frappe.get_single("S3 File Attachment")
+    endpoint_url = frappe.conf.get("s3_endpoint_url") or frappe.conf.get("endpoint_url")
+    if not endpoint_url:
+        frappe.throw("الرجاء التأكد من إضافة مسار endpoint_url في ملف site_config.json")
+    return {
+        "aws_key": s3_doc.aws_key,
+        "aws_secret": s3_doc.aws_secret,
+        "bucket_name": s3_doc.bucket_name,
+        "region": s3_doc.region_name or "auto", # 👈 قراءة المنطقة من الإعدادات (غالباً auto)
+        "endpoint_url": endpoint_url
+    }
+
+def get_r2_client(settings):
+    return boto3.client(
+        's3',
+        aws_access_key_id=settings["aws_key"],
+        aws_secret_access_key=settings["aws_secret"],
+        region_name=settings["region"], # 👈 تمرير المنطقة لتطابق التوقيع مع كلاودفلير
+        endpoint_url=settings["endpoint_url"],
+        config=Config(
+            signature_version='s3v4',
+            s3={'addressing_style': 'path'} # 👈 التوافق الإجباري مع خوادم R2
+        )
+    )
+
+    
+def extract_s3_key(file_url, bucket_name):
+    """دالة ذكية لاستخراج المفتاح الصحيح وتجاوز مسارات التطبيق الوسيط"""
+    
+    # 1. الاكتشاف الذكي: إذا كان الرابط يحتوي على مسار تطبيق S3 الوسيط
+    if "frappe_s3_attachment.controller.generate_file" in file_url:
+        parsed_url = urlparse(file_url)
+        query_params = parse_qs(parsed_url.query)
+        # نستخرج قيمة 'key' الصافية من الرابط
+        if 'key' in query_params:
+            return query_params['key'][0] # سيرجع مساراً نظيفاً مثل: 2026/04/10/Lab Result/...
+
+    # 2. الطريقة الاحتياطية (في حال كان الرابط مباشراً أو عادياً)
+    decoded_url = unquote(file_url)
+    if decoded_url.startswith("http"):
+        parsed = urlparse(decoded_url)
+        path = parsed.path.lstrip('/')
+    else:
+        path = decoded_url.replace('/private/files/', '').replace('/public/files/', '').lstrip('/')
+        
+    if path.startswith(bucket_name + "/"):
+        path = path.replace(bucket_name + "/", "", 1)
+        
+    return path
+@frappe.whitelist()
+def download_single_pdf(result_name):
+    user = frappe.session.user
+    doc = frappe.get_doc("Lab Result", result_name)
+
+    if doc.owner_user != user:
+        frappe.throw("غير مصرح لك بالوصول لهذه النتيجة", frappe.PermissionError)
+
+    settings = get_s3_settings()
+    s3_client = get_r2_client(settings)
+
+    # استخدام الدالة الجديدة لاستخراج المفتاح الكامل
+    file_key = extract_s3_key(doc.result_pdf, settings["bucket_name"])
+
+    try:
+        presigned_url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': settings["bucket_name"], 'Key': file_key},
+            ExpiresIn=600 
+        )
+        
+        if not doc.is_read:
+            doc.db_set('is_read', 1)
+            frappe.db.commit()
+
+        return {"status": "success", "download_url": presigned_url}
+    except ClientError as e:
+        return {"status": "error", "message": str(e)}
+
+@frappe.whitelist()
+def download_bulk_zip(result_names):
+    if isinstance(result_names, str):
+        result_names = json.loads(result_names)
+
+    user = frappe.session.user
+    settings = get_s3_settings()
+    s3_client = get_r2_client(settings)
+    zip_buffer = io.BytesIO()
+    files_added = 0 # عداد للتحقق من إضافة الملفات للـ ZIP
+
+    with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+        for name in result_names:
+            doc = frappe.get_doc("Lab Result", name)
+            if doc.owner_user != user or not doc.result_pdf: 
+                continue
+
+            # استخدام الدالة الجديدة لاستخراج المفتاح الكامل
+            file_key = extract_s3_key(doc.result_pdf, settings["bucket_name"])
+            # استبدل السطر القديم بهذا:
+            try:
+                response = s3_client.get_object(Bucket=settings["bucket_name"], Key=file_key)
+                file_data = response['Body'].read()
+                
+                patient_name = doc.patient_name.replace(" ", "_") if doc.patient_name else "Result"
+                zip_file.writestr(f"{doc.name}_{patient_name}.pdf", file_data)
+                files_added += 1
+                
+                if not doc.is_read:
+                    doc.db_set('is_read', 1)
+            except Exception as e:
+                # تسجيل الخطأ في لوحة تحكم Frappe لتسهيل اكتشافه مستقبلاً
+                frappe.log_error(message=str(e), title=f"S3 ZIP Error for {name}")
+                continue
+
+    if files_added == 0:
+        frappe.local.response["http_status_code"] = 404
+        return {"status": "error", "message": "تعذر العثور على أي ملفات صالحة للتحميل."}
+
+    frappe.db.commit()
+    zip_buffer.seek(0)
+    frappe.local.response.filename = "Bulk_Results.zip"
+    frappe.local.response.filecontent = zip_buffer.getvalue()
+    frappe.local.response.type = "download"
+
+
+
+
+@frappe.whitelist(allow_guest=True)
+def get_ticker_messages():
+    """
+    API لجلب عبارات الشريط العلوي من إعدادات البوابة.
+    يقوم بتحويل النص المتعدد الأسطر إلى مصفوفة (Array) لسهولة الاستخدام في React.
+    """
+    try:
+        # قراءة الحقل من الـ Single DocType
+        # نستخدم get_single_value لأنها أسرع ولا تتطلب جلب المستند كاملاً
+        messages_text = frappe.db.get_single_value("Result Settings", "ticker_messages")
+        
+        # إذا كان الحقل فارغاً، نرجع مصفوفة فارغة
+        if not messages_text:
+            return {"status": "success", "data": []}
+            
+        # تقسيم النص بناءً على النزول لسطر جديد، مع تجاهل الأسطر الفارغة
+        # strip() تقوم بإزالة المسافات الزائدة من بداية ونهاية كل عبارة
+        messages_list = [msg.strip() for msg in messages_text.split('\n') if msg.strip()]
+        
+        return {
+            "status": "success",
+            "data": messages_list
+        }
+        
+    except Exception as e:
+        frappe.local.response["http_status_code"] = 500
+        return {"status": "error", "message": f"حدث خطأ أثناء جلب الإعدادات: {str(e)}"}
+
+
+
+
+
+
+
+
+
+
+
+
+import frappe
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_lab_users_query(doctype, txt, searchfield, start, page_len, filters):
+    # أضفنا حقل mobile_no في الـ SELECT لكي يظهر في القائمة المنسدلة
+    # وأضفنا شروط البحث برقم الجوال أو الهاتف الثابت في الـ WHERE
+    sql = """
+        SELECT DISTINCT 
+            `tabUser`.name, 
+            `tabUser`.full_name, 
+            `tabUser`.mobile_no
+        FROM `tabUser`
+        JOIN `tabHas Role` ON `tabHas Role`.parent = `tabUser`.name
+        WHERE `tabHas Role`.role IN ('Lab Center', 'Lab Patient')
+        AND `tabUser`.enabled = 1
+        AND (
+            `tabUser`.name LIKE %(txt)s 
+            OR `tabUser`.full_name LIKE %(txt)s
+            OR IFNULL(`tabUser`.mobile_no, '') LIKE %(txt)s
+            OR IFNULL(`tabUser`.phone, '') LIKE %(txt)s
+        )
+        ORDER BY `tabUser`.name ASC
+        LIMIT %(start)s, %(page_len)s
+    """
+    
+    return frappe.db.sql(sql, {
+        'txt': '%' + txt + '%',
+        'start': start,
+        'page_len': page_len
+    })
+
+
+@frappe.whitelist()
+def change_user_password(old_password, new_password):
+    user = frappe.session.user
+    
+    if user == "Guest":
+        frappe.throw(_("يجب تسجيل الدخول لتغيير كلمة المرور"))
+        
+    try:
+        frappe.utils.password.check_password(user, old_password)
+    except frappe.AuthenticationError:
+        frappe.throw(_("كلمة المرور القديمة غير صحيحة"))
+        
+    # ⚠️ السر هنا: إخبار النظام بالسماح بحفظ البيانات حتى لو كان الطلب GET
+    frappe.flags.read_only = False
+    
+    user_doc = frappe.get_doc("User", user)
+    user_doc.new_password = new_password
+    user_doc.save(ignore_permissions=True)
+    
+    # إجبار قاعدة البيانات على حفظ التغييرات فوراً
+    frappe.db.commit()
+    
+    return {"status": "success", "message": "تم تغيير كلمة المرور بنجاح"}
+
+
+
+
+@frappe.whitelist()
+def check_user_role(user, role):
+    # نستخدم frappe.db.exists للتحقق السريع في قاعدة البيانات مباشرة
+    is_role_exist = frappe.db.exists('Has Role', {
+        'parent': user,
+        'role': role
+    })
+    return bool(is_role_exist)
