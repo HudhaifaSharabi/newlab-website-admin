@@ -1,4 +1,5 @@
 import frappe
+import re
 from frappe.utils import formatdate
 from frappe.utils.file_manager import save_file
 import json
@@ -14,6 +15,11 @@ from botocore.exceptions import ClientError
 from botocore.config import Config
 import urllib.parse
 from urllib.parse import unquote, urlparse, parse_qs
+from frappe.utils import today
+try:
+    import pdfplumber
+except ImportError:
+    pass
 
 def _get(doc, field):
     """Helper to safely get field value"""
@@ -1554,3 +1560,76 @@ def check_user_role(user, role):
         'role': role
     })
     return bool(is_role_exist)
+
+
+
+
+
+
+
+
+@frappe.whitelist()
+def bulk_upload_lab_results():
+    owner_user = frappe.form_dict.get('owner_user')
+    branch = frappe.form_dict.get('branch')
+
+    if "file" not in frappe.request.files:
+        frappe.throw("لم يتم إرسال ملف")
+
+    file_data = frappe.request.files["file"]
+    file_content = file_data.read()
+    file_name = file_data.filename
+
+    patient_name = "غير معروف"
+
+    # 1. الاستخراج الذكي البصري
+    try:
+        pdf_stream = io.BytesIO(file_content)
+        with pdfplumber.open(pdf_stream) as pdf:
+            # هذا الأمر يسحب النص بنفس الترتيب الذي تراه في الشاشة
+            extracted_text = pdf.pages[0].extract_text()
+            
+        if extracted_text:
+            # إصلاح الحروف المدمجة في الـ PDF
+            extracted_text = extracted_text.replace('ﻼ', 'لا').replace('ﻻ', 'لا')
+
+            # الكود الآن بسيط جداً: ابحث عن Patient Name، وخذ النص العربي الذي يليه مباشرة!
+            # سيتجاهل النقطتين والمسافات ويأخذ الاسم الصافي فقط
+            match = re.search(r"Patient\s*Name[^\u0600-\u06FF]*([\u0600-\u06FF\s]{5,})", extracted_text, re.IGNORECASE)
+            
+            if match:
+                raw_name = match.group(1).strip()
+                clean_name = re.sub(r'\s+', ' ', raw_name)
+                
+                # ---------------------------------------------------------
+                # ⚠️ التعديل تم هنا (عكس النص وتنظيفه)
+                patient_name = clean_name[::-1].strip()
+                patient_name = patient_name.strip(' :.')
+                # ---------------------------------------------------------
+    except Exception as e:
+        frappe.log_error(f"PDF Parse Error: {str(e)}", "Bulk Lab Uploader")
+
+    # 2. إنشاء سجل Lab Result جديد كلياً
+    doc = frappe.get_doc({
+        "doctype": "Lab Result",
+        "owner_user": owner_user,
+        "branch": branch,
+        "patient_name": patient_name,
+        "result_date": today(),
+        "is_read": 0
+    })
+    doc.insert(ignore_permissions=True)
+
+    # 3. حفظ الملف في التخزين وربطه بالسجل
+    saved_file = save_file(
+        file_name,
+        file_content,
+        "Lab Result",
+        doc.name,
+        is_private=0 
+    )
+
+    doc.db_set('result_pdf', saved_file.file_url)
+    frappe.db.commit()
+
+    return {"status": "success", "patient": patient_name, "doc": doc.name}
